@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+//1
+        class book{
+            constructor(title,author,yrpublished,read){
+                this.title=title;
+                this.author=author;
+                this.yrpublished=yrpublished;
+                this.read=read;
+            }
+            getSummary(){
+                return `title: ${this.title} , author: ${this.author} , yrpublished: ${this.yrpublished}, readStatus: ${this.read}`;
+            }
+        }
+
+//2
+        const Earr=[]; 
+
+//3
+        function addBook(t,a,y,r){
+            const bk=new book(t,a,y,r);
+            Earr.push(bk);
+        }
+
+
+        function rmLastbk(){
+            Earr.pop();
+        }
+
+        function addbkFront(t,a,y,r){
+            Earr.unshift(new book(t,a,y,r));
+        }
+
+        function rmbkFront(){
+            Earr.shift();
+        }
+//4
+        function getAllTitles(){
+            const AllT=Earr.map(t=>t.title);
+            console.log(AllT);
+        }
+
+        function getBooksbyAuthor(input){
+            const auth= Earr.filter(m=>(m.author)==(input));
+            for(let x in auth){
+            console.log(auth[x].title);
+            }
+        }
+
+        function tot_bk_Published_bf_yr(year){
+            const yr=Earr.filter(m=> (m.yrpublished)<year);
+            for(let x in yr){
+            console.log(yr[x].title);
+            }
+        }
+
+        function rm_bk_by_title(tit){
+            for(let i in Earr){
+                if(Earr[i].title == tit){
+                    var tI=i;
+                }
+            }
+            Earr.splice(tI,1);
+        }
+
+        function get_bk_by_rStatus(rstatus){
+            let s1=Earr.filter(p => (p.read) == (rstatus));
+            for(let q in s1){
+                return Earr[q].title;
+            }
+        }
+
+        function get_sub_library(start,end){
+            const slicedEle=Earr.slice(start,end);
+            return slicedEle;
+        }
+
+        addBook("4th","kishore",2004,false);
+        addBook("5th","Siva",2003,true);
+        addbkFront("3rd","kmr",2014,true);
+        addbkFront("2nd","kmr",2008,true);
+        addbkFront("1st","kmr",2009,false);
+        
+        console.log(Earr);
+        // getAllTitles();
+        // getBooksbyAuthor("kmr");
+        // tot_bk_Published_bf_yr(2014);
+        // rm_bk_by_title("frd");
+        // console.log(get_bk_by_rStatus(false));
+        // console.log(get_sub_library(1,3));
+        
+
+
+
+       
+
+    </script>
+</body>
+</html>
